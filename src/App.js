@@ -6,10 +6,6 @@ import BlogDetails from './BlogDetails';
 
 
 function App() {
-  const title = 'Welcome to the new blog';
-  const likes = 50;
-
-
 
   return (
     <Router>
