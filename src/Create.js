@@ -1,10 +1,12 @@
 import { useState } from "react";
+import {useHistory} from 'react-router-dom';
 
 const Create = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('mario');
     const [isPending, setIsPending] = useState(false);
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();  //prevents page from refreshing (default action)
@@ -12,14 +14,19 @@ const Create = () => {
 
         setIsPending(true);
 
-        fetch('http://localhost:8000/blogs', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json"},
-            body: JSON.stringify(blog)
+        fetch('http://localhost:8000/blogs', { //2nd argument {...}
+            method: 'POST', //post request
+            headers: { "Content-Type": "application/json"}, // telling server json data is being sent 
+            body: JSON.stringify(blog) //object being sent; JSON string form of the object
         }).then(() => {
             console.log('new blog added')
             setIsPending(false);
+            // history.go(-1); //go back 1 through history
+            // history.go(1); //go forward 1 through history
+            history.push('/'); //redirect to home page
         })
+
+        
     }
     
     return ( 
