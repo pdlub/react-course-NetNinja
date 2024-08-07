@@ -1,12 +1,12 @@
 import { useState } from "react";
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const Create = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('mario');
     const [isPending, setIsPending] = useState(false);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();  //prevents page from refreshing (default action)
@@ -21,9 +21,9 @@ const Create = () => {
         }).then(() => {
             console.log('new blog added')
             setIsPending(false);
-            // history.go(-1); //go back 1 through history
-            // history.go(1); //go forward 1 through history
-            history.push('/'); //redirect to home page
+            // navigate(-1); //go back 1 through history
+            // navigate(1); //go forward 1 through history
+            navigate('/'); //redirect to home page
         })
 
         
