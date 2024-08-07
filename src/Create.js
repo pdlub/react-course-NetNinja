@@ -4,11 +4,18 @@ const Create = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('mario');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();  //prevents page from refreshing (default action)
+        const blog = {title, body, author}; //blog object
+
+        console.log(blog);
+    }
     
     return ( 
         <div className="create">
             <h2>Add a New Blog</h2>
-            <form>
+            <form onSubmit = {handleSubmit}>
                 <label>Blog title:</label>
                 <input 
                     type="text"
